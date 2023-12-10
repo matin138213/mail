@@ -75,11 +75,6 @@ class MailSerializer(serializers.ModelSerializer):
             print(6)
             raise serializers.ValidationError('Invalid meeting_type provided')
 
-        # if serializer.is_valid():
-        #     instance = serializer.save()
-        # else:
-        #     raise serializers.ValidationError(serializer.errors)
-
         type = ContentType.objects.get_for_model(meeting_type)
 
         mail = Mail.objects.create(content_type=type, object_id=meeting_type.id, **validated_data)
@@ -92,3 +87,4 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Messages
         fields = ['user', 'description', 'attachment', 'is_accepted', 'mail', 'unread','meta_data']
+    # def validate(self, data):

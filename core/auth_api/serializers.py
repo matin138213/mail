@@ -7,6 +7,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'picture']
+
+
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255)
@@ -22,6 +24,7 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError('Invalid password')
 
         return data
+
+
 class LogoutSerializer(serializers.Serializer):
     refresh_token = serializers.CharField()
-

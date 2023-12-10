@@ -42,13 +42,13 @@ class Mail(models.Model):
 
 class Messages(models.Model):
     user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, verbose_name='کاربر',
-                             related_name='user_massage')
+                             related_name='message_user')
     description = models.TextField(verbose_name='متن')
     attachment = models.FileField(upload_to='file')
-    is_accepted = models.BooleanField()
-    mail = models.ForeignKey(Mail, on_delete=models.PROTECT, verbose_name='نامه', related_name='mail_massage')
+    is_accepted = models.BooleanField(null=True)
+    mail = models.ForeignKey(Mail, on_delete=models.PROTECT, verbose_name='نامه', related_name='massage_mail')
     unread = models.ManyToManyField('core.User', related_name='user_unread', verbose_name='خوانده نشده')
-    meta_data = models.JSONField()
+    meta_data = models.JSONField(null=True)
 
 
 class Financial(models.Model):
